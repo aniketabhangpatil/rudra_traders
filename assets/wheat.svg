@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="wheatGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="35%" stop-color="#eab308"/>
+      <stop offset="80%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+    <filter id="wheatGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="1" dy="3" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <circle cx="60" cy="60" r="54" fill="#fefce8" stroke="#ca8a04" stroke-width="2.5" opacity="0.7"/>
+  <!-- Central Wheat Stalk -->
+  <path d="M 60 108 L 60 25" stroke="#a16207" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Wheat Awns (Hair) -->
+  <path d="M 60 25 Q 60 12 55 6" stroke="#ca8a04" stroke-width="1.5" fill="none"/>
+  <path d="M 60 25 Q 64 12 70 8" stroke="#ca8a04" stroke-width="1.5" fill="none"/>
+  
+  <!-- Grains Left & Right along stalk -->
+  <!-- Top Grain -->
+  <path d="M 60 22 C 55 20, 55 28, 60 30 C 65 28, 65 20, 60 22 Z" fill="url(#wheatGold)" filter="url(#wheatGlow)"/>
+  
+  <!-- Row 1 -->
+  <path d="M 59 30 C 47 30, 48 40, 59 42 Z" fill="url(#wheatGold)" filter="url(#wheatGlow)"/>
+  <path d="M 61 30 C 73 30, 72 40, 61 42 Z" fill="url(#wheatGold)" filter="url(#wheatGlow)"/>
+  <path d="M 47 32 Q 35 24 30 18" stroke="#ca8a04" stroke-width="1.5" fill="none"/>
+  <path d="M 73 32 Q 85 24 90 18" stroke="#ca8a04" stroke-width="1.5" fill="none"/>
+
+  <!-- Row 2 -->
+  <path d="M 59 42 C 45 42, 46 54, 59 56 Z" fill="url(#wheatGold)" filter="url(#wheatGlow)"/>
+  <path d="M 61 42 C 75 42, 74 54, 61 56 Z" fill="url(#wheatGold)" filter="url(#wheatGlow)"/>
+  <path d="M 45 44 Q 30 36 24 30" stroke="#ca8a04" stroke-width="1.5" fill="none"/>
+  <path d="M 75 44 Q 90 36 96 30" stroke="#ca8a04" stroke-width="1.5" fill="none"/>
+
+  <!-- Row 3 -->
+  <path d="M 59 56 C 45 56, 46 68, 59 70 Z" fill="url(#wheatGold)" filter="url(#wheatGlow)"/>
+  <path d="M 61 56 C 75 56, 74 68, 61 70 Z" fill="url(#wheatGold)" filter="url(#wheatGlow)"/>
+  <path d="M 45 58 Q 30 52 22 46" stroke="#ca8a04" stroke-width="1.5" fill="none"/>
+  <path d="M 75 58 Q 90 52 98 46" stroke="#ca8a04" stroke-width="1.5" fill="none"/>
+
+  <!-- Row 4 -->
+  <path d="M 59 70 C 46 70, 47 82, 59 84 Z" fill="url(#wheatGold)" filter="url(#wheatGlow)"/>
+  <path d="M 61 70 C 74 70, 73 82, 61 84 Z" fill="url(#wheatGold)" filter="url(#wheatGlow)"/>
+  <path d="M 46 72 Q 32 68 25 64" stroke="#ca8a04" stroke-width="1.5" fill="none"/>
+  <path d="M 74 72 Q 88 68 95 64" stroke="#ca8a04" stroke-width="1.5" fill="none"/>
+
+  <!-- Grain Center Line Detail -->
+  <path d="M 60 22 L 60 85" stroke="#78350f" stroke-width="1.5" opacity="0.4"/>
+</svg>

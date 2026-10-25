@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#0b0f0d"/>
+  <circle cx="32" cy="32" r="28" fill="#14532d" stroke="#ca8a04" stroke-width="2"/>
+  <!-- Wheat / Flame motif in ruby metallic red -->
+  <g fill="#dc2626" stroke="#991b1b" stroke-width="0.8">
+    <!-- Center Grain -->
+    <path d="M 32 12 C 28 17 28 27 32 30 C 36 27 36 17 32 12 Z"/>
+    <!-- Left Grains -->
+    <path d="M 31 22 C 24 23 20 29 23 35 C 28 36 31 31 31 22 Z"/>
+    <path d="M 31 33 C 24 35 21 42 24 47 C 29 48 31 42 31 33 Z"/>
+    <!-- Right Grains -->
+    <path d="M 33 22 C 40 23 44 29 41 35 C 36 36 33 31 33 22 Z"/>
+    <path d="M 33 33 C 40 35 43 42 40 47 C 35 48 33 42 33 33 Z"/>
+  </g>
+  <!-- Base arch -->
+  <path d="M 16 53 Q 32 49 48 53" stroke="#eab308" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+</svg>

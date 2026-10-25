@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="chanaGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="35%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#92400e"/>
+    </linearGradient>
+    <linearGradient id="chanaGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fed7aa"/>
+      <stop offset="40%" stop-color="#ea580c"/>
+      <stop offset="100%" stop-color="#7c2d12"/>
+    </linearGradient>
+    <filter id="chanaShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="1" dy="4" stdDeviation="3.5" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <circle cx="60" cy="60" r="54" fill="#ffedd5" stroke="#f97316" stroke-width="2.5" opacity="0.6"/>
+  <!-- Group of desi chickpeas with their signature beaked shape -->
+  <!-- Chickpea 1 -->
+  <path d="M 45 42 C 45 32, 53 30, 56 36 C 65 37, 72 48, 68 62 C 65 72, 48 74, 40 64 C 35 56, 38 46, 45 42 Z" fill="url(#chanaGrad1)" filter="url(#chanaShadow)" stroke="#78350f" stroke-width="1.2"/>
+  <path d="M 50 38 Q 54 44 52 54" fill="none" stroke="#78350f" stroke-width="1.2" opacity="0.4"/>
+  <circle cx="48" cy="48" r="3" fill="#fef08a" opacity="0.5"/>
+
+  <!-- Chickpea 2 (Foreground right) -->
+  <path d="M 62 55 C 64 45, 73 42, 78 48 C 86 52, 90 64, 85 76 C 80 86, 62 87, 55 77 C 50 68, 54 58, 62 55 Z" fill="url(#chanaGrad2)" filter="url(#chanaShadow)" stroke="#7c2d12" stroke-width="1.2"/>
+  <path d="M 68 50 Q 72 58 70 68" fill="none" stroke="#451a03" stroke-width="1.2" opacity="0.4"/>
+  <circle cx="66" cy="62" r="3.5" fill="#ffedd5" opacity="0.5"/>
+
+  <!-- Chickpea 3 (Lower left) -->
+  <path d="M 32 64 C 34 56, 42 54, 46 59 C 52 62, 55 72, 51 81 C 47 88, 33 89, 27 81 C 23 74, 26 66, 32 64 Z" fill="url(#chanaGrad1)" filter="url(#chanaShadow)" stroke="#78350f" stroke-width="1.2"/>
+  
+  <!-- Green plant sprig -->
+  <path d="M 75 35 Q 85 24 94 20" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round"/>
+  <ellipse cx="88" cy="22" rx="4" ry="7" transform="rotate(30 88 22)" fill="#22c55e"/>
+  <ellipse cx="80" cy="28" rx="4" ry="6" transform="rotate(-40 80 28)" fill="#16a34a"/>
+</svg>

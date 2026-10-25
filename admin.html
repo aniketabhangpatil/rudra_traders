@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ॲडमिन डॅशबोर्ड - रुद्र ट्रेडर्स (Rudra Traders Admin)</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div class="admin-container">
+    
+    <!-- Security Disclaimer Notice Banner (Strict Requirement) -->
+    <div class="security-demo-banner">
+      <div>
+        <strong>⚠️ सुरक्षितता सूचना (Frontend-Only Demo Notice):</strong>
+        हे केवळ क्लायंट-साइड फ्रंट-एंड प्रात्यक्षिक आहे. जावास्क्रिप्टमधील क्रेडेंशियल्स ब्राउझर इन्स्पेक्ट केल्यावर दिसू शकतात. ही खरी सुरक्षित बॅकएंड ऑथेंटिकेशन प्रणाली नाही.
+      </div>
+      <div>
+        <a href="index.html" style="color: #ffffff; text-decoration: underline; font-weight: 700;">वेबसाइट पहा ➔</a>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         1. Admin Login View (Demo Auth)
+         ========================================== -->
+    <div class="login-view-wrap" id="adminLoginView">
+      <div class="login-card">
+        <div class="login-header">
+          <img src="assets/logo.png" alt="रुद्र ट्रेडर्स" class="login-logo">
+          <h1 class="login-title">ॲडमिन लॉगिन</h1>
+          <p class="login-sub">Rudra Traders Management Portal</p>
+        </div>
+
+        <form id="adminLoginForm">
+          <div class="form-group">
+            <label class="form-label" for="adminUsername">वापरकर्ता नाव (Username)</label>
+            <input type="text" id="adminUsername" class="form-control" placeholder="वापरकर्ता नाव प्रविष्ट करा / Enter Username" required autocomplete="username">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="adminPassword">पासवर्ड (Password)</label>
+            <div class="password-input-wrap">
+              <input type="password" id="adminPassword" class="form-control" placeholder="पासवर्ड प्रविष्ट करा / Enter Password" required autocomplete="current-password">
+              <button type="button" class="toggle-password-btn" id="togglePasswordBtn" aria-label="Toggle password visibility">👁️</button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-admin btn-admin-primary btn-full">
+            डॅशबोर्डमध्ये प्रवेश करा (Login) ➔
+          </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 1.5rem;">
+          <a href="index.html" style="color: var(--admin-text-muted); font-size: 0.88rem; text-decoration: none;">
+            ← मुख्य वेबसाइटवर परत जा
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         2. Admin Dashboard View (Post-Login)
+         ========================================== -->
+    <div id="adminDashboardView" style="display: none;">
+      
+      <!-- Top Bar -->
+      <nav class="admin-navbar">
+        <div class="admin-nav-brand">
+          <img src="assets/logo.png" alt="रुद्र ट्रेडर्स">
+          <div>
+            <div style="font-weight: 700; font-size: 1.15rem;">रुद्र ट्रेडर्स डॅशबोर्ड</div>
+            <span class="admin-badge">Admin Mode Active</span>
+          </div>
+        </div>
+
+        <div class="admin-user-actions">
+          <a href="index.html" target="_blank" class="btn-admin btn-admin-secondary btn-admin-sm">
+            🌐 मुख्य वेबसाइट उघडा (View Site)
+          </a>
+          <button type="button" id="adminLogoutBtn" class="btn-admin btn-admin-danger btn-admin-sm">
+            लॉगआउट (Logout) 🔒
+          </button>
+        </div>
+      </nav>
+
+      <!-- Dashboard Tabs Navigation -->
+      <div class="admin-tabs" role="tablist">
+        <button type="button" class="tab-btn active" data-tab="tabRates">
+          🌾 चालू दर व्यवस्थापन (Rates)
+        </button>
+        <button type="button" class="tab-btn" data-tab="tabGallery">
+          📷 छायाचित्रे व्यवस्थापन (Gallery)
+        </button>
+        <button type="button" class="tab-btn" data-tab="tabContent">
+          📝 मजकूर संपादन (Content)
+        </button>
+        <button type="button" class="tab-btn" data-tab="tabSettings">
+          ⚙️ व्यवसाय सेटिंग्ज (Settings)
+        </button>
+      </div>
+
+      <!-- ========================================
+           TAB A: Manage Current Rates
+           ======================================== -->
+      <div class="tab-panel active" id="tabRates">
+        <div class="admin-panel-card">
+          <div class="panel-card-header">
+            <h2 class="panel-card-title">
+              <span>🌾</span> चालू खरेदी दर संपादन (Edit Crop Rates)
+            </h2>
+            <div style="display: flex; gap: 0.5rem;">
+              <button type="button" class="btn-admin btn-admin-secondary btn-admin-sm" id="resetRatesBtn">
+                मूळ दर रीसेट करा (Reset Defaults)
+              </button>
+            </div>
+          </div>
+
+          <form id="ratesEditForm">
+            <div class="rates-edit-grid">
+              
+              <!-- 1. Soybean Card -->
+              <div class="crop-rate-edit-card">
+                <div class="crop-card-header">
+                  <img src="assets/soybean.svg" alt="Soybean">
+                  <h4>सोयाबीन (Soybean)</h4>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label" for="soybeanRate">आजचा मुख्य दर (₹ / क्विंटल) *</label>
+                  <input type="number" id="soybeanRate" class="form-control" required placeholder="उदा. 5150">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                  <div class="form-group">
+                    <label class="form-label" for="soybeanMinRate">किमान दर (₹)</label>
+                    <input type="number" id="soybeanMinRate" class="form-control" placeholder="उदा. 4800">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="soybeanMaxRate">कमाल दर (₹)</label>
+                    <input type="number" id="soybeanMaxRate" class="form-control" placeholder="उदा. 5300">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="soybeanNotesMr">प्रतवारी / ओलावा माहिती (मराठी)</label>
+                  <textarea id="soybeanNotesMr" class="form-control" rows="2" placeholder="ओलावा १०% पेक्षा कमी, स्वच्छ माल..."></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="soybeanNotesEn">Quality Specs (English)</label>
+                  <textarea id="soybeanNotesEn" class="form-control" rows="2" placeholder="Moisture below 10%, clean..."></textarea>
+                </div>
+              </div>
+
+              <!-- 2. Chickpea Card -->
+              <div class="crop-rate-edit-card">
+                <div class="crop-card-header">
+                  <img src="assets/chickpea.svg" alt="Chickpea">
+                  <h4>हरभरा / चना (Chickpea)</h4>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label" for="chickpeaRate">आजचा मुख्य दर (₹ / क्विंटल) *</label>
+                  <input type="number" id="chickpeaRate" class="form-control" required placeholder="उदा. 5950">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                  <div class="form-group">
+                    <label class="form-label" for="chickpeaMinRate">किमान दर (₹)</label>
+                    <input type="number" id="chickpeaMinRate" class="form-control" placeholder="उदा. 5600">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="chickpeaMaxRate">कमाल दर (₹)</label>
+                    <input type="number" id="chickpeaMaxRate" class="form-control" placeholder="उदा. 6200">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="chickpeaNotesMr">प्रतवारी / ओलावा माहिती (मराठी)</label>
+                  <textarea id="chickpeaNotesMr" class="form-control" rows="2" placeholder="चांगला वाळलेला, कीड नसलेला..."></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="chickpeaNotesEn">Quality Specs (English)</label>
+                  <textarea id="chickpeaNotesEn" class="form-control" rows="2" placeholder="Well dried, pest free..."></textarea>
+                </div>
+              </div>
+
+              <!-- 3. Wheat Card -->
+              <div class="crop-rate-edit-card">
+                <div class="crop-card-header">
+                  <img src="assets/wheat.svg" alt="Wheat">
+                  <h4>गहू (Wheat)</h4>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label" for="wheatRate">आजचा मुख्य दर (₹ / क्विंटल) *</label>
+                  <input type="number" id="wheatRate" class="form-control" required placeholder="उदा. 2850">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                  <div class="form-group">
+                    <label class="form-label" for="wheatMinRate">किमान दर (₹)</label>
+                    <input type="number" id="wheatMinRate" class="form-control" placeholder="उदा. 2600">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="wheatMaxRate">कमाल दर (₹)</label>
+                    <input type="number" id="wheatMaxRate" class="form-control" placeholder="उदा. 3100">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="wheatNotesMr">प्रतवारी / ओलावा माहिती (मराठी)</label>
+                  <textarea id="wheatNotesMr" class="form-control" rows="2" placeholder="लोकवन, शरबती उत्तम प्रत..."></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="wheatNotesEn">Quality Specs (English)</label>
+                  <textarea id="wheatNotesEn" class="form-control" rows="2" placeholder="Lokwan, Sharbati premium grade..."></textarea>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Timestamp Control -->
+            <div class="crop-rate-edit-card" style="margin-bottom: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <label class="form-label" for="rateLastUpdated">शेवटचे अपडेट वेळ (Last Updated Timestamp) *</label>
+                <button type="button" class="btn-admin btn-admin-secondary btn-admin-sm" id="setTimestampNowBtn">
+                  🕒 सध्याची वेळ सेट करा (Set to Now)
+                </button>
+              </div>
+              <input type="text" id="rateLastUpdated" class="form-control" placeholder="उदा. आज सकाळी ०९:३० वा.">
+            </div>
+
+            <div style="display: flex; justify-content: flex-end;">
+              <button type="submit" class="btn-admin btn-admin-primary" style="font-size: 1.1rem; padding: 0.85rem 2rem;">
+                💾 बदल सेव्ह करा (Save Rates)
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ========================================
+           TAB B: Manage Gallery (IndexedDB Storage)
+           ======================================== -->
+      <div class="tab-panel" id="tabGallery">
+        <div class="admin-panel-card">
+          <div class="panel-card-header">
+            <h2 class="panel-card-title">
+              <span>📷</span> छायाचित्रे व्यवस्थापन (Upload &amp; Manage Photos)
+            </h2>
+            <button type="button" class="btn-admin btn-admin-secondary btn-admin-sm" id="resetGalleryBtn">
+              मूळ ३ छायाचित्रे रीसेट करा
+            </button>
+          </div>
+
+          <!-- Upload Box -->
+          <div class="gallery-upload-box" id="galleryUploadBox">
+            <div class="upload-icon">📁</div>
+            <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.35rem;">
+              नवीन छायाचित्र अपलोड करण्यासाठी येथे क्लिक करा किंवा ड्रॅग करा
+            </div>
+            <p style="color: var(--admin-text-muted); font-size: 0.85rem;">
+              JPG, PNG, WebP किंवा SVG (जास्तीत जास्त ८ MB). IndexedDB मध्ये स्थानिक साठवणूक.
+            </p>
+            <input type="file" id="galleryFileInput" accept="image/*" style="display: none;">
+          </div>
+
+          <!-- Preview & Metadata Form -->
+          <div class="preview-container" id="galleryPreviewWrap">
+            <h4 style="margin-bottom: 1rem; color: var(--admin-primary);">फोटो पूर्वावलोकन (Preview)</h4>
+            <img id="galleryPreviewImg" src="" alt="Preview">
+
+            <form id="galleryAddForm">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                  <label class="form-label" for="photoTitleMr">छायाचित्र शीर्षक (मराठी) *</label>
+                  <input type="text" id="photoTitleMr" class="form-control" required placeholder="उदा. आधुनिक वजन काटा केंद्र">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="photoTitleEn">Photo Title (English)</label>
+                  <input type="text" id="photoTitleEn" class="form-control" placeholder="e.g. Modern Weighbridge Station">
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                  <label class="form-label" for="photoDescMr">वर्णन (मराठी)</label>
+                  <textarea id="photoDescMr" class="form-control" rows="2" placeholder="शेतकऱ्यांसाठी अचूक संगणकीय वजनाची व्यवस्था..."></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="photoDescEn">Description (English)</label>
+                  <textarea id="photoDescEn" class="form-control" rows="2" placeholder="Transparent digital weighing for farmers..."></textarea>
+                </div>
+              </div>
+
+              <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem;">
+                <input type="checkbox" id="photoFeatured" style="width: 18px; height: 18px;">
+                <label for="photoFeatured" style="font-size: 0.95rem; cursor: pointer;">
+                  ⭐ हे छायाचित्र 'प्रमुख' (Featured) म्हणून दर्शवा
+                </label>
+              </div>
+
+              <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+                <button type="button" class="btn-admin btn-admin-secondary" onclick="document.getElementById('galleryPreviewWrap').style.display='none'">
+                  रद्द करा
+                </button>
+                <button type="submit" class="btn-admin btn-admin-primary">
+                  गॅलरीमध्ये सेव्ह करा (Add Photo) ➔
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Existing Gallery List -->
+          <h3 style="font-size: 1.15rem; margin: 1.5rem 0 1rem; color: #ffffff;">
+            सध्याची सक्रिय छायाचित्रे (Active Gallery Items)
+          </h3>
+          <div style="overflow-x: auto;">
+            <table class="admin-gallery-table">
+              <thead>
+                <tr>
+                  <th>फोटो</th>
+                  <th>शीर्षक</th>
+                  <th>स्थिती</th>
+                  <th>क्रम बदला</th>
+                  <th>क्रिया</th>
+                </tr>
+              </thead>
+              <tbody id="adminGalleryTableBody">
+                <!-- Rendered by admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================
+           TAB C: Edit Website Content
+           ======================================== -->
+      <div class="tab-panel" id="tabContent">
+        <div class="admin-panel-card">
+          <div class="panel-card-header">
+            <h2 class="panel-card-title">
+              <span>📝</span> वेबसाइट मजकूर संपादन (Edit Website Text)
+            </h2>
+            <button type="button" class="btn-admin btn-admin-secondary btn-admin-sm" id="resetContentBtn">
+              मूळ मजकूर रीसेट करा
+            </button>
+          </div>
+
+          <form id="contentEditForm">
+            <!-- Hero Content -->
+            <h3 style="color: var(--admin-primary); margin-bottom: 1rem;">1. मुख्य हेडर (Hero Section)</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="heroHeadlineMr">मुख्य मथळा (Headline - Marathi)</label>
+                <input type="text" id="heroHeadlineMr" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="heroHeadlineEn">Main Headline (English)</label>
+                <input type="text" id="heroHeadlineEn" class="form-control">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+              <div class="form-group">
+                <label class="form-label" for="heroSubtextMr">उपमथळा (Subtext - Marathi)</label>
+                <textarea id="heroSubtextMr" class="form-control" rows="2"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="heroSubtextEn">Subtext (English)</label>
+                <textarea id="heroSubtextEn" class="form-control" rows="2"></textarea>
+              </div>
+            </div>
+
+            <!-- About Section -->
+            <h3 style="color: var(--admin-primary); margin-bottom: 1rem;">2. आमच्याबद्दल (About Us Section)</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="aboutTitleMr">शीर्षक (Title - Marathi)</label>
+                <input type="text" id="aboutTitleMr" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="aboutTitleEn">Title (English)</label>
+                <input type="text" id="aboutTitleEn" class="form-control">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+              <div class="form-group">
+                <label class="form-label" for="aboutDescMr">वर्णन (Description - Marathi)</label>
+                <textarea id="aboutDescMr" class="form-control" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="aboutDescEn">Description (English)</label>
+                <textarea id="aboutDescEn" class="form-control" rows="3"></textarea>
+              </div>
+            </div>
+
+            <!-- How It Works Section -->
+            <h3 style="color: var(--admin-primary); margin-bottom: 1rem;">3. खरेदी कार्यपद्धती (How It Works 4 Steps)</h3>
+            <!-- Step 1 -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="step1TitleMr">पायरी १ शीर्षक (मराठी)</label>
+                <input type="text" id="step1TitleMr" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="step1DescMr">पायरी १ वर्णन (मराठी)</label>
+                <input type="text" id="step1DescMr" class="form-control">
+              </div>
+            </div>
+            <!-- Step 2 -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="step2TitleMr">पायरी २ शीर्षक (मराठी)</label>
+                <input type="text" id="step2TitleMr" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="step2DescMr">पायरी २ वर्णन (मराठी)</label>
+                <input type="text" id="step2DescMr" class="form-control">
+              </div>
+            </div>
+            <!-- Step 3 -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="step3TitleMr">पायरी ३ शीर्षक (मराठी)</label>
+                <input type="text" id="step3TitleMr" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="step3DescMr">पायरी ३ वर्णन (मराठी)</label>
+                <input type="text" id="step3DescMr" class="form-control">
+              </div>
+            </div>
+            <!-- Step 4 -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+              <div class="form-group">
+                <label class="form-label" for="step4TitleMr">पायरी ४ शीर्षक (मराठी)</label>
+                <input type="text" id="step4TitleMr" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="step4DescMr">पायरी ४ वर्णन (मराठी)</label>
+                <input type="text" id="step4DescMr" class="form-control">
+              </div>
+            </div>
+
+            <!-- Footer Note -->
+            <h3 style="color: var(--admin-primary); margin-bottom: 1rem;">4. फुटर संदेश (Footer Message)</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+              <div class="form-group">
+                <label class="form-label" for="footerNoteMr">फुटर संदेश (मराठी)</label>
+                <input type="text" id="footerNoteMr" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="footerNoteEn">Footer Message (English)</label>
+                <input type="text" id="footerNoteEn" class="form-control">
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end;">
+              <button type="submit" class="btn-admin btn-admin-primary" style="font-size: 1.05rem; padding: 0.85rem 2rem;">
+                💾 मजकूर सेव्ह करा (Save Content)
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ========================================
+           TAB D: Business Settings
+           ======================================== -->
+      <div class="tab-panel" id="tabSettings">
+        <div class="admin-panel-card">
+          <div class="panel-card-header">
+            <h2 class="panel-card-title">
+              <span>⚙️</span> संपर्क व व्यवसाय सेटिंग्ज (Business Settings)
+            </h2>
+          </div>
+
+          <form id="settingsEditForm">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="settingsTraderNameMr">व्यापारी / प्रोप्रायटर नाव (मराठी) *</label>
+                <input type="text" id="settingsTraderNameMr" class="form-control" required placeholder="दीपक माधव वेताळ">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="settingsTraderNameEn">Trader / Proprietor Name (English) *</label>
+                <input type="text" id="settingsTraderNameEn" class="form-control" required placeholder="Dipak Madhav Vetal">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="settingsPhone">फोन नंबर (Phone Number Display) *</label>
+                <input type="text" id="settingsPhone" class="form-control" required placeholder="70574 06889">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="settingsWhatsapp">व्हॉट्सअ‍ॅप नंबर (WhatsApp - 91 सह किंवा 10 अंकी) *</label>
+                <input type="text" id="settingsWhatsapp" class="form-control" required placeholder="917057406889">
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label class="form-label" for="settingsMaps">गुगल मॅप्स URL (Google Maps Destination Link) *</label>
+              <input type="url" id="settingsMaps" class="form-control" required placeholder="https://www.google.com/maps/search/?api=1&query=Rudra+Traders+Wakdi+Maharashtra">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="settingsAddressMr">पत्ता (मराठी)</label>
+                <textarea id="settingsAddressMr" class="form-control" rows="2"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="settingsAddressEn">Address (English)</label>
+                <textarea id="settingsAddressEn" class="form-control" rows="2"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group" style="max-width: 320px; margin-bottom: 1.5rem;">
+              <label class="form-label" for="settingsDefaultLang">डीफॉल्ट भाषा (Default Language for New Visitors)</label>
+              <select id="settingsDefaultLang" class="form-control">
+                <option value="mr">मराठी (Marathi - Recommended)</option>
+                <option value="en">English</option>
+              </select>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end;">
+              <button type="submit" class="btn-admin btn-admin-primary" style="font-size: 1.05rem; padding: 0.85rem 2rem;">
+                ⚙️ सेटिंग्ज सेव्ह करा (Save Settings)
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div class="modal-overlay" id="confirmModal">
+    <div class="modal-box">
+      <h3 class="modal-title" id="confirmModalTitle">पुष्टी करा</h3>
+      <p class="modal-desc" id="confirmModalDesc">आपण ही क्रिया करण्यास सहमत आहात का?</p>
+      <div class="modal-actions">
+        <button type="button" class="btn-admin btn-admin-secondary" id="confirmModalCancelBtn">रद्द करा (Cancel)</button>
+        <button type="button" class="btn-admin btn-admin-danger" id="confirmModalActionBtn">होय, खात्री आहे (Confirm)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="data-store.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
